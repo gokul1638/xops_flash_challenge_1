@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cricket Game 🏏</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f4f4f9;
+      padding: 20px;
+    }
+    h1 { color: #2c3e50; }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+      background: #27ae60;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2ecc71;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #34495e;
+    }
+    #score {
+      margin-top: 15px;
+      font-size: 22px;
+      color: #8e44ad;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mini Cricket Game 🏏</h1>
+  <p>Pick your runs (1–6). If computer picks the same, you're OUT!</p>
+
+  <div>
+    <button onclick="play(1)">1</button>
+    <button onclick="play(2)">2</button>
+    <button onclick="play(3)">3</button>
+    <button onclick="play(4)">4</button>
+    <button onclick="play(5)">5</button>
+    <button onclick="play(6)">6</button>
+  </div>
+
+  <div id="result"></div>
+  <div id="score">Score: 0</div>
+
+  <script>
+    let score = 0;
+    let gameOver = false;
+
+    function play(userRun) {
+      if (gameOver) {
+        alert("Game over! Refresh to play again.");
+        return;
+      }
+
+      let compRun = Math.floor(Math.random() * 6) + 1;
+      let resultText = `You chose ${userRun}, Computer chose ${compRun}. `;
+
+      if (userRun === compRun) {
+        resultText += "❌ You're OUT!";
+        gameOver = true;
+      } else {
+        score += userRun;
+        resultText += "✅ You scored " + userRun + " runs!";
+      }
+
+      document.getElementById("result").innerText = resultText;
+      document.getElementById("score").innerText = "Score: " + score;
+    }
+  </script>
+</body>
+</html>
